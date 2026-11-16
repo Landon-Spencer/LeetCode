@@ -11,13 +11,32 @@ class Solution(object):
     :type l2: Optional[ListNode]
     :rtype: Optional[ListNode]
     """
-    while l1 is not None:
-      print("Current:", l1.val)
+    carryOver = False
+    result = ListNode()
+    head = result
+    while l1 is not None and l2 is not None:
+      sum = l1.val + l2.val
+      if sum + 1 <= 8 and carryOver:
+        result.val = sum + 1
+        carryOver = False
+      elif sum == 9 and carryOver:
+        result.val = sum
+      elif sum + 1 > 9 and carryOver:
+        result.val = sum % 10
+      elif carryOver:
+        result.val = sum % 10 + 1
+      elif sum > 9:
+        result.val = sum % 10
+        carryOver = True
+      else:
+        result.val = sum
+      print("Result after sum:", result.val)
       l1 = l1.next
-    print()
-    while l2 is not None:
-      print("Current:", l2.val)
       l2 = l2.next
+      result = result.next
+      result = ListNode()
+    return head
+
     # result = []
     # long = l1 if l1 >= l2 else l2
     # short = l2 if l2 < l1 else l1
@@ -73,6 +92,6 @@ test41 = ListNode(9, test42)
 test = Solution()
 # print(test.addTwoNumbers(l1=[2,4,3], l2=[5,6,4]))
 # print(test.addTwoNumbers(l1=[9,9,9,9,9,9,9], l2=[9,9,9,9]))
-print(test.addTwoNumbers(l1=test11, l2=test21))
+# print(test.addTwoNumbers(l1=test11, l2=test21))
 print(test.addTwoNumbers(l1=test31, l2=test41))
 
