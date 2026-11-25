@@ -58,8 +58,28 @@ class Solution(object):
     if carryOver:
         result.val = 1
     return head
-        
 
+    # Claude Solution
+    # dummy = ListNode()
+    # tail = dummy
+    # carry = 0
+
+    # while l1 is not None or l2 is not None or carry:
+    #     v1 = l1.val if l1 else 0
+    #     v2 = l2.val if l2 else 0
+
+    #     total = v1 + v2 + carry
+    #     carry = total // 10
+
+    #     tail.next = ListNode(total % 10)
+    #     tail = tail.next
+
+    #     l1 = l1.next if l1 else None
+    #     l2 = l2.next if l2 else None
+
+    # return dummy.next
+        
+    # First solution using arrays before I realized that it was a linked list
     # result = []
     # long = l1 if l1 >= l2 else l2
     # short = l2 if l2 < l1 else l1
