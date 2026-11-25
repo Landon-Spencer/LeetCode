@@ -15,49 +15,50 @@ class Solution(object):
     result = ListNode()
     head = result
     while l1 is not None and l2 is not None:
-      sum = l1.val + l2.val
-      if sum + 1 <= 9 and carryOver:
-        result.val = sum + 1
-        carryOver = False
-      elif sum >= 10 and carryOver:
-        result.val = sum % 10
-      elif sum > 9:
-        result.val = sum % 10
-        carryOver = True
-      else:
-        result.val = sum
-      l1 = l1.next
-      l2 = l2.next
-      if l1 is not None or l2 is not None or carryOver:
-        result.next = ListNode()
-        result = result.next
+        sum = l1.val + l2.val
+        if sum + 1 <= 9 and carryOver:
+            result.val = sum + 1
+            carryOver = False
+        elif sum + 1 > 9 and carryOver:
+            result.val = (sum + 1) % 10
+        elif sum > 9:
+            result.val = sum % 10
+            carryOver = True
+        else:
+            result.val = sum
+        l1 = l1.next
+        l2 = l2.next
+        if l1 is not None or l2 is not None or carryOver:
+            result.next = ListNode()
+            result = result.next
     while l1 is not None:
-      if l1.val == 9 and carryOver:
-        result.val = (l1.val + 1) % 10
-      elif carryOver:
-        result.val = l1.val + 1
-        carryOver = False
-      else:
-        result.val = l1.val
-      l1 = l1.next
-      if l1 is not None or carryOver:
-        result.next = ListNode()
-        result = result.next
+        if l1.val == 9 and carryOver:
+            result.val = 0
+        elif carryOver:
+            result.val = l1.val + 1
+            carryOver = False
+        else:
+            result.val = l1.val
+        l1 = l1.next
+        if l1 is not None or carryOver:
+            result.next = ListNode()
+            result = result.next
     while l2 is not None:
-      if l2.val == 9 and carryOver:
-        result.val = (l2.val + 1) % 10
-      elif carryOver:
-        result.val = l2.val + 1
-        carryOver = False
-      else:
-        result.val = l2.val
-      l2 = l2.next
-      if l2 is not None or carryOver:
-        result.next = ListNode()
-        result = result.next
+        if l2.val == 9 and carryOver:
+            result.val = 0
+        elif carryOver:
+            result.val = l2.val + 1
+            carryOver = False
+        else:
+            result.val = l2.val
+        l2 = l2.next
+        if l2 is not None or carryOver:
+            result.next = ListNode()
+            result = result.next
     if carryOver:
-      result.val = 1
+        result.val = 1
     return head
+        
 
     # result = []
     # long = l1 if l1 >= l2 else l2
